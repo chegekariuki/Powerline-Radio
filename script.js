@@ -176,6 +176,8 @@ const $$ = (selector, ctx = document) => Array.from(ctx.querySelectorAll(selecto
 
 /**
  * Determine and display what should currently be on air based on local time.
+ * Schedule entries use 24-hour values; entries where end > 24 span midnight
+ * (e.g., start: 22, end: 29 means 22:00 – 05:00 the following morning).
  */
 function updateCurrentShow() {
   const showNameEl = $('#current-show');
@@ -186,23 +188,28 @@ function updateCurrentShow() {
   const day  = now.getDay(); // 0=Sun, 1=Mon, ... 6=Sat
   const hour = now.getHours();
 
+  // For matching, convert hour 0–4 to 24–28 so overnight entries (end > 24) match.
+  const h = hour < 5 ? hour + 24 : hour;
+
   const weekdaySchedule = [
-    { start: 5,  end: 6,  show: 'Early Morning Devotion', host: 'Pastor Samuel Kariuki' },
-    { start: 6,  end: 9,  show: 'Breakfast Show',         host: 'Grace Wanjiku'         },
-    { start: 9,  end: 12, show: 'Mid-Morning Praise',     host: 'David Ochieng'         },
-    { start: 12, end: 13, show: 'Midday Prayer & News',   host: 'Faith Njeri'           },
-    { start: 13, end: 16, show: 'Afternoon Gospel Mix',   host: 'Moses Kamau'           },
-    { start: 16, end: 19, show: 'Drive Time',             host: 'Ruth Akinyi'           },
-    { start: 19, end: 21, show: 'Evening Worship Hour',   host: 'Choir of Hope'         },
-    { start: 21, end: 22, show: 'Night Devotion',         host: 'Pastor James Mwangi'  },
+    { start: 5,  end: 6,  show: 'Early Morning Devotion',  host: 'Pastor Samuel Kariuki' },
+    { start: 6,  end: 9,  show: 'Breakfast Show',          host: 'Grace Wanjiku'         },
+    { start: 9,  end: 12, show: 'Mid-Morning Praise',      host: 'David Ochieng'         },
+    { start: 12, end: 13, show: 'Midday Prayer & News',    host: 'Faith Njeri'           },
+    { start: 13, end: 16, show: 'Afternoon Gospel Mix',    host: 'Moses Kamau'           },
+    { start: 16, end: 19, show: 'Drive Time',              host: 'Ruth Akinyi'           },
+    { start: 19, end: 21, show: 'Evening Worship Hour',    host: 'Choir of Hope'         },
+    { start: 21, end: 22, show: 'Night Devotion',          host: 'Pastor James Mwangi'  },
+    { start: 22, end: 29, show: 'Overnight Worship Music', host: 'Auto Playlist'         },
   ];
 
   const saturdaySchedule = [
-    { start: 6,  end: 8,  show: 'Saturday Morning Praise',      host: 'Grace Wanjiku'  },
-    { start: 8,  end: 10, show: 'Family Time',                   host: 'David & Ruth'  },
-    { start: 10, end: 13, show: 'Youth Connect',                 host: 'Brian Mwenda'  },
-    { start: 13, end: 16, show: 'Swahili Gospel Show',           host: 'Mama Pendo'    },
-    { start: 16, end: 20, show: 'Saturday Evening Celebration',  host: 'Moses Kamau'   },
+    { start: 6,  end: 8,  show: 'Saturday Morning Praise',     host: 'Grace Wanjiku' },
+    { start: 8,  end: 10, show: 'Family Time',                  host: 'David & Ruth'  },
+    { start: 10, end: 13, show: 'Youth Connect',                host: 'Brian Mwenda'  },
+    { start: 13, end: 16, show: 'Swahili Gospel Show',          host: 'Mama Pendo'    },
+    { start: 16, end: 20, show: 'Saturday Evening Celebration', host: 'Moses Kamau'   },
+    { start: 20, end: 30, show: 'Overnight Worship Music',      host: 'Auto Playlist' },
   ];
 
   const sundaySchedule = [
@@ -211,6 +218,7 @@ function updateCurrentShow() {
     { start: 10, end: 13, show: 'Sunday Bible Study',      host: 'Pastor James Mwangi'   },
     { start: 13, end: 17, show: 'Afternoon Gospel Hymns',  host: 'Choir of Hope'          },
     { start: 17, end: 20, show: 'Sunday Evening Service',  host: 'Various Pastors'        },
+    { start: 20, end: 30, show: 'Overnight Worship Music', host: 'Auto Playlist'          },
   ];
 
   let schedule;
@@ -218,11 +226,14 @@ function updateCurrentShow() {
   else if (day === 6) schedule = saturdaySchedule;
   else                schedule = weekdaySchedule;
 
-  const current = schedule.find(s => hour >= s.start && hour < s.end);
+  const current = schedule.find(s => h >= s.start && h < s.end);
   if (current) {
     showNameEl.textContent = current.show;
-    hostEl.textContent     = `with ${current.host}`;
+    hostEl.textContent     = current.host === 'Auto Playlist'
+      ? current.host
+      : `with ${current.host}`;
   } else {
+    // Fallback (should not normally be reached with explicit overnight entries)
     showNameEl.textContent = 'Overnight Worship Music';
     hostEl.textContent     = 'Auto Playlist';
   }
@@ -402,7 +413,8 @@ function updateCurrentShow() {
         e.preventDefault();
         const headerHeight = document.getElementById('site-header')?.offsetHeight ?? 70;
         const targetY = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-        window.scrollTo({ top: targetY, behavior: 'smooth' });
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: targetY, behavior: prefersReduced ? 'auto' : 'smooth' });
       }
     });
   });
