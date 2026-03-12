@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Powerline Radio – A Flash of Hope. Your Christian radio station for uplifting music, inspiring messages, and community connection." />
+  <title>Powerline Radio – A Flash of Hope</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <header class="site-header" id="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="nav-brand">
+        <div class="logo-icon" aria-hidden="true">⚡</div>
+        <div class="logo-text">
+          <span class="logo-title">POWERLINE</span>
+          <span class="logo-subtitle">RADIO</span>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu" role="list">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#listen" class="nav-link">Listen Live</a></li>
+        <li><a href="#schedule" class="nav-link">Schedule</a></li>
+        <li><a href="#shows" class="nav-link">Shows</a></li>
+        <li><a href="programmes.html" class="nav-link">Programmes</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero" id="home" aria-labelledby="hero-heading">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tagline-pre">Welcome to</span>
+      <h1 id="hero-heading" class="hero-title">POWERLINE RADIO</h1>
+      <p class="hero-tagline">⚡ A Flash of Hope</p>
+      <p class="hero-description">
+        Uplifting music, inspiring messages, and community connection —
+        broadcasting faith 24 hours a day, 7 days a week.
+      </p>
+      <div class="hero-cta">
+        <a href="#listen" class="btn btn-primary">Listen Live</a>
+        <a href="programmes.html" class="btn btn-outline">Browse Episodes</a>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C300,80 900,0 1200,40 L1200,80 L0,80 Z" fill="var(--bg-primary)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ======== LIVE PLAYER ======== -->
+  <section class="listen-section" id="listen" aria-labelledby="listen-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">On Air Now</span>
+        <h2 id="listen-heading" class="section-title">Listen Live</h2>
+        <p class="section-subtitle">Tune in to Powerline Radio — hope-filled programming streaming 24/7.</p>
+      </div>
+
+      <div class="player-card" role="region" aria-label="Live radio player">
+        <div class="player-on-air">
+          <span class="on-air-dot" aria-hidden="true"></span>
+          <span class="on-air-label">ON AIR</span>
+        </div>
+        <div class="player-show-info">
+          <p class="player-show-name" id="current-show">Morning Devotion</p>
+          <p class="player-show-host" id="current-host">with Pastor James Mwangi</p>
+        </div>
+        <div class="player-controls">
+          <button class="player-btn play-pause-btn" id="play-pause-btn" aria-label="Play live stream">
+            <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <polygon points="5,3 19,12 5,21" fill="currentColor"/>
+            </svg>
+            <svg class="pause-icon hidden" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
+              <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+            </svg>
+          </button>
+          <div class="player-volume" aria-label="Volume control">
+            <button class="volume-btn" id="volume-btn" aria-label="Toggle mute">
+              <svg class="volume-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3,9 L3,15 L7,15 L12,20 L12,4 L7,9 Z" fill="currentColor"/>
+                <path d="M16,7 Q19,12 16,17" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M18.5,4.5 Q23,12 18.5,19.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="80" aria-label="Volume" />
+          </div>
+        </div>
+        <audio id="radio-stream" preload="none">
+          <!-- Replace with your actual stream URL -->
+          <source src="https://stream.powerlineradio.com/live" type="audio/mpeg" />
+          Your browser does not support audio streaming.
+        </audio>
+        <p class="player-note">
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="3"/></svg>
+          If the stream does not start automatically, press the play button above.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== ABOUT ======== -->
+  <section class="about-section" id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-badge">Our Story</span>
+          <h2 id="about-heading" class="section-title">About Powerline Radio</h2>
+          <p>
+            Powerline Radio was founded with a single mission: to bring a flash of hope
+            to listeners across Kenya and beyond. Through the power of Christian music,
+            gospel teaching, and community-driven programming, we connect believers and
+            seekers alike to the transforming message of faith.
+          </p>
+          <p>
+            Broadcasting from the heart of Kenya, our dedicated team of presenters,
+            pastors, and volunteers work tirelessly to create programming that uplifts,
+            encourages, and empowers listeners every single day.
+          </p>
+          <ul class="about-values" role="list">
+            <li>
+              <span class="value-icon" aria-hidden="true">🎵</span>
+              <div>
+                <strong>Uplifting Music</strong>
+                <p>Carefully curated gospel and Christian music around the clock.</p>
+              </div>
+            </li>
+            <li>
+              <span class="value-icon" aria-hidden="true">📖</span>
+              <div>
+                <strong>Biblical Teaching</strong>
+                <p>In-depth Bible studies and devotionals with trusted pastors.</p>
+              </div>
+            </li>
+            <li>
+              <span class="value-icon" aria-hidden="true">🤝</span>
+              <div>
+                <strong>Community Connection</strong>
+                <p>Programmes that unite and serve the local and global community.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="about-stats" aria-label="Station statistics">
+          <div class="stat-card">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Broadcasting</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">50K+</span>
+            <span class="stat-label">Listeners</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Programmes</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Years on Air</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SCHEDULE ======== -->
+  <section class="schedule-section" id="schedule" aria-labelledby="schedule-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Programming</span>
+        <h2 id="schedule-heading" class="section-title">Weekly Schedule</h2>
+        <p class="section-subtitle">Plan your listening with our weekly broadcast timetable.</p>
+      </div>
+
+      <div class="schedule-tabs" role="tablist" aria-label="Days of the week">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-weekday" id="btn-weekday" data-tab="weekday">Mon – Fri</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-saturday" id="btn-saturday" data-tab="saturday">Saturday</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-sunday" id="btn-sunday" data-tab="sunday">Sunday</button>
+      </div>
+
+      <div class="schedule-panel" id="tab-weekday" role="tabpanel" aria-labelledby="btn-weekday">
+        <div class="schedule-table" role="table" aria-label="Weekday schedule">
+          <div class="schedule-row header-row" role="row">
+            <span role="columnheader">Time</span>
+            <span role="columnheader">Programme</span>
+            <span role="columnheader">Host</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">05:00 – 06:00</span>
+            <span role="cell">Early Morning Devotion</span>
+            <span role="cell" class="host-cell">Pastor Samuel Kariuki</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">06:00 – 09:00</span>
+            <span role="cell">Breakfast Show</span>
+            <span role="cell" class="host-cell">Grace Wanjiku</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">09:00 – 12:00</span>
+            <span role="cell">Mid-Morning Praise</span>
+            <span role="cell" class="host-cell">David Ochieng</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">12:00 – 13:00</span>
+            <span role="cell">Midday Prayer &amp; News</span>
+            <span role="cell" class="host-cell">Faith Njeri</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">13:00 – 16:00</span>
+            <span role="cell">Afternoon Gospel Mix</span>
+            <span role="cell" class="host-cell">Moses Kamau</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">16:00 – 19:00</span>
+            <span role="cell">Drive Time</span>
+            <span role="cell" class="host-cell">Ruth Akinyi</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">19:00 – 21:00</span>
+            <span role="cell">Evening Worship Hour</span>
+            <span role="cell" class="host-cell">Choir of Hope</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">21:00 – 22:00</span>
+            <span role="cell">Night Devotion</span>
+            <span role="cell" class="host-cell">Pastor James Mwangi</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">22:00 – 05:00</span>
+            <span role="cell">Overnight Worship Music</span>
+            <span role="cell" class="host-cell">Auto Playlist</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-panel hidden" id="tab-saturday" role="tabpanel" aria-labelledby="btn-saturday">
+        <div class="schedule-table" role="table" aria-label="Saturday schedule">
+          <div class="schedule-row header-row" role="row">
+            <span role="columnheader">Time</span>
+            <span role="columnheader">Programme</span>
+            <span role="columnheader">Host</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">06:00 – 08:00</span>
+            <span role="cell">Saturday Morning Praise</span>
+            <span role="cell" class="host-cell">Grace Wanjiku</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">08:00 – 10:00</span>
+            <span role="cell">Family Time</span>
+            <span role="cell" class="host-cell">David &amp; Ruth</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">10:00 – 13:00</span>
+            <span role="cell">Youth Connect</span>
+            <span role="cell" class="host-cell">Brian Mwenda</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">13:00 – 16:00</span>
+            <span role="cell">Swahili Gospel Show</span>
+            <span role="cell" class="host-cell">Mama Pendo</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">16:00 – 20:00</span>
+            <span role="cell">Saturday Evening Celebration</span>
+            <span role="cell" class="host-cell">Moses Kamau</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">20:00 – 05:00</span>
+            <span role="cell">Overnight Worship Music</span>
+            <span role="cell" class="host-cell">Auto Playlist</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-panel hidden" id="tab-sunday" role="tabpanel" aria-labelledby="btn-sunday">
+        <div class="schedule-table" role="table" aria-label="Sunday schedule">
+          <div class="schedule-row header-row" role="row">
+            <span role="columnheader">Time</span>
+            <span role="columnheader">Programme</span>
+            <span role="columnheader">Host</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">06:00 – 08:00</span>
+            <span role="cell">Sunday Morning Worship</span>
+            <span role="cell" class="host-cell">Pastor Samuel Kariuki</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">08:00 – 10:00</span>
+            <span role="cell">Live Church Service</span>
+            <span role="cell" class="host-cell">Various Pastors</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">10:00 – 13:00</span>
+            <span role="cell">Sunday Bible Study</span>
+            <span role="cell" class="host-cell">Pastor James Mwangi</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">13:00 – 17:00</span>
+            <span role="cell">Afternoon Gospel Hymns</span>
+            <span role="cell" class="host-cell">Choir of Hope</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">17:00 – 20:00</span>
+            <span role="cell">Sunday Evening Service</span>
+            <span role="cell" class="host-cell">Various Pastors</span>
+          </div>
+          <div class="schedule-row" role="row">
+            <span role="cell" class="time-cell">20:00 – 05:00</span>
+            <span role="cell">Overnight Worship Music</span>
+            <span role="cell" class="host-cell">Auto Playlist</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SHOWS ======== -->
+  <section class="shows-section" id="shows" aria-labelledby="shows-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Our Content</span>
+        <h2 id="shows-heading" class="section-title">Featured Shows</h2>
+        <p class="section-subtitle">Discover our most popular and impactful programmes.</p>
+      </div>
+
+      <div class="shows-grid">
+        <article class="show-card">
+          <div class="show-card-img" aria-hidden="true">
+            <span class="show-icon">🌅</span>
+          </div>
+          <div class="show-card-body">
+            <span class="show-time">Weekdays · 06:00</span>
+            <h3 class="show-title">Breakfast Show</h3>
+            <p class="show-description">
+              Start your day right with an energising mix of gospel music,
+              motivational messages, news updates, and community highlights.
+            </p>
+            <span class="show-host">Grace Wanjiku</span>
+          </div>
+        </article>
+
+        <article class="show-card">
+          <div class="show-card-img" aria-hidden="true">
+            <span class="show-icon">🙏</span>
+          </div>
+          <div class="show-card-body">
+            <span class="show-time">Weekdays · 19:00</span>
+            <h3 class="show-title">Evening Worship Hour</h3>
+            <p class="show-description">
+              Wind down with soul-stirring worship music and reflective devotionals
+              to close your day in praise and gratitude.
+            </p>
+            <span class="show-host">Choir of Hope</span>
+          </div>
+        </article>
+
+        <article class="show-card">
+          <div class="show-card-img" aria-hidden="true">
+            <span class="show-icon">👨‍👩‍👧</span>
+          </div>
+          <div class="show-card-body">
+            <span class="show-time">Saturday · 08:00</span>
+            <h3 class="show-title">Family Time</h3>
+            <p class="show-description">
+              A programme dedicated to strengthening family bonds through
+              Christian values, parenting advice, and wholesome family activities.
+            </p>
+            <span class="show-host">David &amp; Ruth</span>
+          </div>
+        </article>
+
+        <article class="show-card">
+          <div class="show-card-img" aria-hidden="true">
+            <span class="show-icon">🎤</span>
+          </div>
+          <div class="show-card-body">
+            <span class="show-time">Saturday · 10:00</span>
+            <h3 class="show-title">Youth Connect</h3>
+            <p class="show-description">
+              Relevant Christian content for the next generation — addressing
+              real challenges with faith-based perspectives and contemporary gospel music.
+            </p>
+            <span class="show-host">Brian Mwenda</span>
+          </div>
+        </article>
+
+        <article class="show-card">
+          <div class="show-card-img" aria-hidden="true">
+            <span class="show-icon">📖</span>
+          </div>
+          <div class="show-card-body">
+            <span class="show-time">Sunday · 10:00</span>
+            <h3 class="show-title">Sunday Bible Study</h3>
+            <p class="show-description">
+              Deep, verse-by-verse exploration of Scripture with Pastor James,
+              bringing the Word of God to life for everyday believers.
+            </p>
+            <span class="show-host">Pastor James Mwangi</span>
+          </div>
+        </article>
+
+        <article class="show-card">
+          <div class="show-card-img" aria-hidden="true">
+            <span class="show-icon">🌍</span>
+          </div>
+          <div class="show-card-body">
+            <span class="show-time">Saturday · 13:00</span>
+            <h3 class="show-title">Swahili Gospel Show</h3>
+            <p class="show-description">
+              Connecting with our Swahili-speaking community through gospel music,
+              preaching, and cultural celebrations of faith.
+            </p>
+            <span class="show-host">Mama Pendo</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== LATEST EPISODES ======== -->
+  <section class="latest-episodes-section" id="latest-episodes" aria-labelledby="latest-ep-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">On Demand</span>
+        <h2 id="latest-ep-heading" class="section-title">Latest Episodes</h2>
+        <p class="section-subtitle">Missed a broadcast? Catch up with our most recent recordings.</p>
+      </div>
+      <div class="latest-episodes-grid" id="latest-episodes-grid">
+        <!-- Populated by index-previews.js -->
+      </div>
+      <div class="section-cta">
+        <a href="programmes.html" class="btn btn-primary">Browse All Episodes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== LATEST BLOG POSTS ======== -->
+  <section class="latest-posts-section" id="latest-posts" aria-labelledby="latest-posts-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">News &amp; Inspiration</span>
+        <h2 id="latest-posts-heading" class="section-title">From the Blog</h2>
+        <p class="section-subtitle">Devotions, station news, interviews, and community stories.</p>
+      </div>
+      <div class="latest-posts-grid" id="latest-posts-grid">
+        <!-- Populated by index-previews.js -->
+      </div>
+      <div class="section-cta">
+        <a href="blog.html" class="btn btn-primary">Read All Posts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CONTACT ======== -->
+  <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Get In Touch</span>
+        <h2 id="contact-heading" class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We'd love to hear from you. Reach out through any of the channels below.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">📍</span>
+            <div>
+              <strong>Location</strong>
+              <p>Nairobi, Kenya</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">📞</span>
+            <div>
+              <strong>Phone</strong>
+              <p><a href="tel:+254700000000">+254 700 000 000</a></p>
+              <p>Mon–Fri, 8 AM – 6 PM EAT</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">✉️</span>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:info@powerlineradio.com">info@powerlineradio.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">📻</span>
+            <div>
+              <strong>Request a Song or Shoutout</strong>
+              <p><a href="mailto:requests@powerlineradio.com">requests@powerlineradio.com</a></p>
+            </div>
+          </div>
+          <div class="social-links" aria-label="Social media links">
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Facebook
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter / X">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Twitter
+            </a>
+            <a href="#" class="social-btn" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" stroke="currentColor" stroke-width="2" fill="none"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+              YouTube
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
+          <div class="form-group">
+            <label for="contact-name">Full Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="contact-name" name="name" required autocomplete="name" placeholder="Your full name" />
+            <span class="field-error" id="name-error" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email Address <span aria-hidden="true">*</span></label>
+            <input type="email" id="contact-email" name="email" required autocomplete="email" placeholder="you@example.com" />
+            <span class="field-error" id="email-error" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">Subject</label>
+            <select id="contact-subject" name="subject" autocomplete="off">
+              <option value="">— Select a subject —</option>
+              <option value="general">General Enquiry</option>
+              <option value="song-request">Song Request</option>
+              <option value="shoutout">Shoutout</option>
+              <option value="advertising">Advertising</option>
+              <option value="prayer">Prayer Request</option>
+              <option value="feedback">Feedback</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message <span aria-hidden="true">*</span></label>
+            <textarea id="contact-message" name="message" rows="5" required placeholder="Your message…"></textarea>
+            <span class="field-error" id="message-error" role="alert" aria-live="polite"></span>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit-btn">Send Message</button>
+          <div class="form-success hidden" id="form-success" role="status" aria-live="polite">
+            ✅ Thank you! Your message has been received. We'll get back to you soon.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="site-footer" aria-labelledby="footer-heading">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-icon" aria-hidden="true">⚡</span>
+            <div class="logo-text">
+              <span class="logo-title">POWERLINE</span>
+              <span class="logo-subtitle">RADIO</span>
+            </div>
+          </div>
+          <p class="footer-tagline">⚡ A Flash of Hope</p>
+          <p class="footer-description">
+            Broadcasting the message of hope and faith across Kenya and beyond.
+          </p>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+          <h3 id="footer-heading" class="footer-heading">Quick Links</h3>
+          <ul role="list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#listen">Listen Live</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#shows">Shows</a></li>
+            <li><a href="programmes.html">Programmes</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-contact">
+          <h3 class="footer-heading">Contact</h3>
+          <address>
+            <p>Nairobi, Kenya</p>
+            <p><a href="tel:+254700000000">+254 700 000 000</a></p>
+            <p><a href="mailto:info@powerlineradio.com">info@powerlineradio.com</a></p>
+          </address>
+        </div>
+
+        <div class="footer-legal">
+          <h3 class="footer-heading">Legal</h3>
+          <ul role="list">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="cookies.html">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="footer-year">2024</span> Powerline Radio. All rights reserved.</p>
+        <p class="footer-faith">Made with ❤️ and faith</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="index-previews.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

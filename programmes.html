@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Powerline Radio Programmes – Browse and listen to recorded episodes from all your favourite shows, available on demand." />
+  <title>Programmes – Powerline Radio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body class="inner-page">
+
+  <!-- ======== NAVIGATION ======== -->
+  <header class="site-header" id="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="nav-brand">
+        <a href="index.html" class="nav-brand-link" aria-label="Powerline Radio home">
+          <div class="logo-icon" aria-hidden="true">⚡</div>
+          <div class="logo-text">
+            <span class="logo-title">POWERLINE</span>
+            <span class="logo-subtitle">RADIO</span>
+          </div>
+        </a>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu" role="list">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="index.html#listen" class="nav-link">Listen Live</a></li>
+        <li><a href="index.html#schedule" class="nav-link">Schedule</a></li>
+        <li><a href="programmes.html" class="nav-link active" aria-current="page">Programmes</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ======== PAGE HERO ======== -->
+  <section class="page-hero" aria-labelledby="page-hero-heading">
+    <div class="page-hero-overlay"></div>
+    <div class="container page-hero-content">
+      <span class="section-badge">On Demand</span>
+      <h1 id="page-hero-heading" class="page-hero-title">Audio Programmes</h1>
+      <p class="page-hero-subtitle">
+        Missed a broadcast? Browse our full library of recorded episodes and listen
+        to your favourite shows at any time.
+      </p>
+    </div>
+  </section>
+
+  <!-- ======== STICKY MINI PLAYER ======== -->
+  <div class="mini-player hidden" id="mini-player" role="region" aria-label="Now playing">
+    <div class="mini-player-inner container">
+      <div class="mini-player-info">
+        <span class="mini-player-title" id="mini-player-title">–</span>
+        <span class="mini-player-show" id="mini-player-show">–</span>
+      </div>
+      <div class="mini-player-controls">
+        <button class="mini-rewind-btn" id="mini-rewind-btn" aria-label="Rewind 15 seconds">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <polyline points="1,4 1,10 7,10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3.51 15a9 9 0 1 0 .49-3.58" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <text x="8" y="14" font-size="5" fill="currentColor" font-family="sans-serif" font-weight="bold">15</text>
+          </svg>
+        </button>
+        <button class="mini-play-btn" id="mini-play-btn" aria-label="Play">
+          <svg class="mini-play-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <polygon points="5,3 19,12 5,21" fill="currentColor"/>
+          </svg>
+          <svg class="mini-pause-icon hidden" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
+            <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="mini-forward-btn" id="mini-forward-btn" aria-label="Forward 15 seconds">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <polyline points="23,4 23,10 17,10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20.49 15a9 9 0 1 1-.49-3.58" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <text x="8" y="14" font-size="5" fill="currentColor" font-family="sans-serif" font-weight="bold">15</text>
+          </svg>
+        </button>
+      </div>
+      <div class="mini-player-progress">
+        <span class="mini-time-current" id="mini-time-current">0:00</span>
+        <input type="range" class="mini-progress-bar" id="mini-progress-bar" min="0" max="100" value="0" aria-label="Seek" />
+        <span class="mini-time-duration" id="mini-time-duration">0:00</span>
+      </div>
+      <button class="mini-close-btn" id="mini-close-btn" aria-label="Close player">✕</button>
+    </div>
+    <audio id="episode-audio" preload="metadata"></audio>
+  </div>
+
+  <!-- ======== MAIN CONTENT ======== -->
+  <main class="programmes-main">
+    <div class="container">
+
+      <!-- Filter bar -->
+      <div class="filter-bar" role="toolbar" aria-label="Filter episodes by category">
+        <span class="filter-label">Filter:</span>
+        <div class="filter-btns" id="episode-filters" role="group" aria-label="Episode categories">
+          <!-- Populated by programmes.js -->
+        </div>
+        <div class="filter-search">
+          <label for="episode-search" class="visually-hidden">Search episodes</label>
+          <input type="search" id="episode-search" class="search-input" placeholder="Search episodes…" autocomplete="off" />
+        </div>
+      </div>
+
+      <!-- Results count -->
+      <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true"></p>
+
+      <!-- Episode grid -->
+      <div class="episode-grid" id="episode-grid" aria-label="Episode list">
+        <!-- Populated dynamically by programmes.js -->
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state hidden" id="empty-state" role="status">
+        <span class="empty-icon" aria-hidden="true">🎙️</span>
+        <p>No episodes match your search. Try a different keyword or category.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-icon" aria-hidden="true">⚡</span>
+            <div class="logo-text">
+              <span class="logo-title">POWERLINE</span>
+              <span class="logo-subtitle">RADIO</span>
+            </div>
+          </div>
+          <p class="footer-tagline">⚡ A Flash of Hope</p>
+          <p class="footer-description">Broadcasting the message of hope and faith across Kenya and beyond.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#listen">Listen Live</a></li>
+            <li><a href="index.html#schedule">Schedule</a></li>
+            <li><a href="programmes.html">Programmes</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="footer-contact">
+          <h3 class="footer-heading">Contact</h3>
+          <address>
+            <p>Nairobi, Kenya</p>
+            <p><a href="tel:+254700000000">+254 700 000 000</a></p>
+            <p><a href="mailto:info@powerlineradio.com">info@powerlineradio.com</a></p>
+          </address>
+        </div>
+        <div class="footer-legal">
+          <h3 class="footer-heading">Legal</h3>
+          <ul role="list">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="cookies.html">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span class="footer-year"></span> Powerline Radio. All rights reserved.</p>
+        <p class="footer-faith">Made with ❤️ and faith</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="programmes.js"></script>
+</body>
+</html>
